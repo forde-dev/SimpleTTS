@@ -10,6 +10,7 @@ current request is finished. You can also map 'simpletts -s' to a key to stop it
 To use this program, you must first have the below modules installed.
 
   --> gTTS
+  
   --> mpv
 
 # Install

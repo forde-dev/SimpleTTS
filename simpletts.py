@@ -15,6 +15,7 @@ import typing
 import socket
 import base64
 import queue
+import time
 import json
 import sys
 import os
@@ -23,9 +24,6 @@ import os
 import gtts
 
 __version__ = "0.0.1"
-
-# PyAudio data buffer size
-CHUNK = 1024
 
 # Text queue to store selected
 # text for later playback
@@ -141,6 +139,9 @@ def speek(text: str):
                 mpv_process.terminate()
                 break
 
+            # Limit polling to 20 times a second
+            time.sleep(.05)
+
         text_queue.task_done()
 
 
@@ -165,6 +166,7 @@ def main():
     # Check if script is already running
     running_soc = communicate()
 
+    # Process text to speech request
     if cli_args.text or cli_args.xsel:
         if cli_args.text:
             text = cli_args.text
@@ -180,10 +182,12 @@ def main():
             else:
                 speek(text)
 
+    # Process Stop request
     elif cli_args.stop and running_soc:
         request = {"command": "stop"}
         send_request(running_soc, request)
 
+    # Proccess version check
     elif cli_args.version:
         print("Simple TTS {}".format(__version__))
 

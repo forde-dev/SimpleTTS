@@ -14,7 +14,7 @@ To use this program, you must first have the below modules installed.
   --> mpv
 
 # Install
-pip install git+https://github.com/fordetek/SimpleTTS
+pip install git+https://github.com/willforde/SimpleTTS
 
 # Command-line arguments::
 

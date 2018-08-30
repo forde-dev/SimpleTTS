@@ -18,7 +18,7 @@ if VERSION is None:
             VERSION = match.group(1)
 
 setup(
-    name='SimpleTTS',
+    name='simpletts',
     version=VERSION,
     url='https://github.com/fordetek/SimpleTTS',
     author='Michael Forde',

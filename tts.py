@@ -3,6 +3,7 @@ Name: tts.py
 Description: This program will read what ever is selected on the screen
 Author: Michael Forde
 """
+# Imports
 from gtts import gTTS
 import os
 import vlc

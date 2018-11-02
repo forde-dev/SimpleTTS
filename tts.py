@@ -36,7 +36,7 @@ class Text:
     def getText(self):
         return self._text
 
-class GttsCall:
+class GttsCall(Text):
     """
     for the GttsCall class there is 3 attributes
     _text - string - this requests the text from the Text class
@@ -44,9 +44,9 @@ class GttsCall:
     _gtts - audio object - this sends text and receives the audio object from googles api
     """
     def __init__(self):
-        self._text = Text().getText()
+        Text.__init__(self)
         self._lang = cfg['lang']
-        self._gtts = None
+        self._gtts = gTTS(text=self._text, lang=self._lang)
 
     # this gets the language used
     def getLang(self):
@@ -63,7 +63,7 @@ class GttsCall:
         self._gtts = gTTS(text=self._text, lang=self._lang)
         return self._gtts
 
-class Mp3:
+class Mp3(GttsCall):
     """
     for the Mp3 class there is 4 attributes
     _gtts - audio object- this request from the GttsCall class
@@ -72,7 +72,7 @@ class Mp3:
     _playspeed - float - this is used to determine how fast the mp3 file will be played, also set from _settings.yml
     """
     def __init__(self):
-        self._gtts = GttsCall().gTTS()
+        GttsCall.__init__(self)
         self._filename = cfg['mp3name']
         self._length = 0.0
         self._playspeed = float(cfg['playspeed'])
@@ -167,6 +167,3 @@ if __name__ == '__main__':
     #s.setText(text)
     print(s.getText())
     m.playText()
-
-
-

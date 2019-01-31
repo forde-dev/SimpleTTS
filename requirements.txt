@@ -1,0 +1,4 @@
+gtts
+pydub
+eyed3
+pyyaml
